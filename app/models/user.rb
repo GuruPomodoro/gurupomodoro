@@ -5,6 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:trello]
 
+  has_many :team_users
+  has_many :team_leaders, -> { where user_type: 'leader' }, class_name: 'TeamUser'
+  has_many :teams, through: :team_users
+  has_many :owned_teams, class_name: 'Team', through: :team_leaders, source: :team
+
  def self.from_trello(auth)
    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
      user.email = auth.info.email
