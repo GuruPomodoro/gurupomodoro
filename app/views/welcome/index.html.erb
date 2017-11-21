@@ -1,6 +1,56 @@
+<p id="notice"><%= notice %></p>
 <h1>Welcome</h1>
 <% if user_signed_in? %>
   <p><%= current_user.email %> - <%= link_to('Logout', destroy_user_session_path, method: :delete) %></p>
+
+
+  <h1>Owned Teams</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% current_user.owned_teams.each do |team| %>
+        <tr>
+          <td><%= team.title %></td>
+          <td><%= team.description %></td>
+          <td><%= link_to 'Show', team %></td>
+          <td><%= link_to 'Edit', edit_team_path(team) %></td>
+          <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <hr>
+
+
+  <h1>Member Teams</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% current_user.teams.each do |team| %>
+        <tr>
+          <td><%= team.title %></td>
+          <td><%= team.description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 <% else %>
   <p><%= link_to('Login', new_user_session_path) %></p>
 <% end %>
