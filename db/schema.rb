@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171121153736) do
+ActiveRecord::Schema.define(version: 20171122085100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "team_invitations", force: :cascade do |t|
+    t.bigint "from_id"
+    t.bigint "team_id"
+    t.string "to_email"
+    t.string "to_name"
+    t.datetime "accepted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from_id"], name: "index_team_invitations_on_from_id"
+    t.index ["team_id"], name: "index_team_invitations_on_team_id"
+  end
 
   create_table "team_users", force: :cascade do |t|
     t.bigint "team_id"
@@ -57,6 +69,8 @@ ActiveRecord::Schema.define(version: 20171121153736) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "team_invitations", "teams"
+  add_foreign_key "team_invitations", "users", column: "from_id"
   add_foreign_key "team_users", "teams"
   add_foreign_key "team_users", "users"
 end

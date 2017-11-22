@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from: one
+  team: one
+  to_email: MyString
+  to_name: MyString
+  accepted_at: 2017-11-22 11:51:00
+
+two:
+  from: two
+  team: two
+  to_email: MyString
+  to_name: MyString
+  accepted_at: 2017-11-22 11:51:00

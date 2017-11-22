@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'invitations/create'
+
+  get 'invitations/accept'
+
+  get 'invitations/show'
+
   root 'welcome#index'
 
   devise_for :users, controllers: {
