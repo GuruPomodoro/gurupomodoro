@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Gurupomodoro</title>
+    <title>Gurupomodoro | <%= yield(:title) %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -9,6 +9,13 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% if user_signed_in? %>
+      <%= render 'layouts/navbarAfterLogin'%>
+    <% else %>
+      <%= render 'layouts/navbarBeforeLogin'%>
+    <%end%>
+    <div class="centerMainContent">
+      <%= yield %>
+    </div>
   </body>
 </html>
