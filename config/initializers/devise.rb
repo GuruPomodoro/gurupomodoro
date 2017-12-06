@@ -250,7 +250,7 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :github, '7844e107234ec6e95a6d', 'd3ba86b7e7d9dcceef309dd2a8ca9e6e91cd128e', scope: 'user,public_repo'
+  # config.omniauth :github, '7844e107234ec6e95a6d', 'd3ba86b7e7d9dcceef309dd2a8ca9e6e91cd128e', scope: 'user,public_repo'
   config.omniauth :trello, '6bc8539de4ebe334b2eaf94b52e4159b', '35a9320829e1b50a2c9681786e3fb7b9629a5dc95523fefc04dd4c722fff8d4e', scope: 'user,public_repo', scope: 'read,write,account', expiration: 'never'
 
   # ==> Warden configuration
