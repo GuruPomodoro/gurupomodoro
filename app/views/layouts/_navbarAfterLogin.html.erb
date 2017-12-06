@@ -1,6 +1,6 @@
 
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="/">
@@ -12,17 +12,18 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Team Select <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Team 1</a></li>
-                        <li><a href="#">Team 2</a></li>
+                        <% current_user.teams.each do |team| %>
+                            <li><a href="#"><%= team.title %></a></li>
+                        <% end %>
                         <li role="separator" class="divider"></li>
-                      <li><a href="#">Create New Team</a></li>
+                      <li><%= link_to("Create New Team", new_team_path) %></li>
 
                     </ul>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="#">Home</a></li>
-                <li><%= link_to('Sign Out', destroy_user_session_path, method: :delete) %>/li>
+                <li><%= link_to('Sign Out', destroy_user_session_path, method: :delete) %></li>
             </ul>
         </div>
     </div>
