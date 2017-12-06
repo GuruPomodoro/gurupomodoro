@@ -22,7 +22,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Sign Out</a></li>
+                <li><%= link_to('Sign Out', destroy_user_session_path, method: :delete) %>/li>
             </ul>
         </div>
     </div>
