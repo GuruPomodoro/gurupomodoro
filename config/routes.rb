@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'testpages/finish'
+
+  get 'testpages/during'
+
+  get 'testpages/interrupt'
+
+  get 'testpages/break'
+
   get 'invitations/create'
 
   get 'invitations/accept'
