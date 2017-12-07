@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171122085100) do
+ActiveRecord::Schema.define(version: 20171207161124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "interruptions", force: :cascade do |t|
+    t.text "reason"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_interruptions_on_user_id"
+  end
+
+  create_table "pomodoros", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "team_id"
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.bigint "interruption_id"
+    t.integer "duration"
+    t.boolean "is_break"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["interruption_id"], name: "index_pomodoros_on_interruption_id"
+    t.index ["team_id"], name: "index_pomodoros_on_team_id"
+    t.index ["user_id"], name: "index_pomodoros_on_user_id"
+  end
 
   create_table "team_invitations", force: :cascade do |t|
     t.bigint "from_id"
@@ -69,6 +92,10 @@ ActiveRecord::Schema.define(version: 20171122085100) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "interruptions", "users"
+  add_foreign_key "pomodoros", "interruptions"
+  add_foreign_key "pomodoros", "teams"
+  add_foreign_key "pomodoros", "users"
   add_foreign_key "team_invitations", "teams"
   add_foreign_key "team_invitations", "users", column: "from_id"
   add_foreign_key "team_users", "teams"
