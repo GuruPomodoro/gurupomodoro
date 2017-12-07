@@ -1,15 +1,9 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
-
-  # GET /teams
-  # GET /teams.json
-  def index
-    @teams = Team.all
-  end
-
   # GET /teams/1
   # GET /teams/1.json
   def show
+    session[:team_id] = @team.id
   end
 
   # GET /teams/new
@@ -55,14 +49,7 @@ class TeamsController < ApplicationController
     end
   end
 
-  # DELETE /teams/1
-  # DELETE /teams/1.json
-  def destroy
-    @team.destroy
-    respond_to do |format|
-      format.html { redirect_to teams_url, notice: 'Team was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+  def settings
   end
 
   private

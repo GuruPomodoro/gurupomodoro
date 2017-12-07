@@ -1,4 +1,11 @@
 class Users::SessionsController < Devise::SessionsController
+  after_action :set_team, :only => :create
+
+  def set_team
+    if current_user.teams.present?
+      session[:team_id] = current_user.teams.first.id
+    end
+  end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
