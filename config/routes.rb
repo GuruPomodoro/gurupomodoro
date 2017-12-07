@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'pomodoro/start'
+
+  get 'pomodoro/begin'
+
+  get 'pomodoro/break_start'
+
+  get 'pomodoro/interrupt'
+
+  get 'pomodoro/finished'
+
   get 'testpages/finish'
 
   get 'testpages/during'
@@ -12,6 +22,8 @@ Rails.application.routes.draw do
   get 'invitations/accept'
 
   get 'invitations/show'
+
+  get '/about', to: 'welcome#about'
 
   root 'welcome#index'
 

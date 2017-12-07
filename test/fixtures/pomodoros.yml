@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  team: one
+  started_at: 2017-12-07 19:11:24
+  finished_at: 2017-12-07 19:11:24
+  interruption: one
+  duration: 1
+  is_break: false
+
+two:
+  user: two
+  team: two
+  started_at: 2017-12-07 19:11:24
+  finished_at: 2017-12-07 19:11:24
+  interruption: two
+  duration: 1
+  is_break: false
