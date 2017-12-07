@@ -11,12 +11,14 @@ class User < ApplicationRecord
   has_many :owned_teams, class_name: 'Team', through: :team_leaders, source: :team
 
  def self.from_trello(auth)
-   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-     user.email = auth.info.email
-     user.password = Devise.friendly_token[0,20]
-     user.trello_token = auth.credentials.token
-     user.trello_secret = auth.credentials.secret
-     user.skip_confirmation!
-   end
+  where(email: auth.info.email).first_or_create do |user|
+    user.provider = auth.provider
+    user.uid = auth.uid
+    user.email = auth.info.email
+    user.password = Devise.friendly_token[0,20]
+    user.trello_token = auth.credentials.token
+    user.trello_secret = auth.credentials.secret
+    user.skip_confirmation!
+  end
  end
 end
