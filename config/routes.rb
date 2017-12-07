@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   get 'invitations/show'
 
+  get '/about', to: 'welcome#about'
+
   root 'welcome#index'
 
   devise_for :users, controllers: {
