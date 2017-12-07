@@ -28,32 +28,14 @@
   color: #fff;
 }
 
-.onPomodoro {
-  background-color: #ff0e10;
-}
-
-.online {
-  background-color: #00a112;
-}
-
-.offline {
-  background-color: #00acff;
-}
-
-.remainingTime {
-  color: #fff;
-}
-
 .jumbotron {
   background-color:transparent !important;
 }
 
 p {
   text-align: center;
-  font-size: 60px;
    margin: auto;
     width: 50%;
-  font-size: 700%;
   }
   #counter{
   padding: 160px 0;
@@ -62,8 +44,8 @@ p {
   font-size: 400%;
   padding: 40px 0;
   }
-  
-  html {  
+
+  html {
   min-height: 100%
 }
   body {
@@ -76,7 +58,7 @@ background: linear-gradient(to top, #7BC6CC, #BE93C5); /* W3C, IE 10+/ Edge, Fir
   font-size: 200%;
   }
   #break{margin: auto; text-align: center; width: 50%;}
-  
+
   .btn {
     padding: 14px 24px;
     border: 0 none;
@@ -84,20 +66,20 @@ background: linear-gradient(to top, #7BC6CC, #BE93C5); /* W3C, IE 10+/ Edge, Fir
     letter-spacing: 1px;
     text-transform: uppercase;
 }
- 
+
 .btn:focus, .btn:active:focus, .btn.active:focus {
     outline: 0 none;
 }
- 
+
 .btn-primary {
     background: #0099cc;
     color: #ffffff;
 }
- 
+
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
     background: #33a6cc;
 }
- 
+
 .btn-primary:active, .btn-primary.active {
     background: #007299;
     box-shadow: none;
@@ -141,12 +123,40 @@ background: linear-gradient(to top, #7BC6CC, #BE93C5); /* W3C, IE 10+/ Edge, Fir
    margin: auto;
 }
 
-textarea{ 
-  width: 500px; 
-  min-width:500px; 
-  max-width:500px; 
+textarea{
+  width: 500px;
+  min-width:500px;
+  max-width:500px;
 
-  height:120px; 
-  min-height:120px;  
+  height:120px;
+  min-height:120px;
   max-height:120px;
+}
+
+
+#team-pomodoro-dashboard {
+  .onPomodoro {
+    background-color: #ff0e10;
+  }
+
+  .online {
+    background-color: #00a112;
+  }
+
+  .offline {
+    background-color: #00acff;
+  }
+
+  .remainingTime {
+    color: #fff;
+  }
+
+  .team-user-box {
+    width: 300px;
+    height: 150px;
+    float: left;
+    margin-right: 40px;
+    border-radius: 20px;
+    padding: 2px 15px 5px;
+  }
 }

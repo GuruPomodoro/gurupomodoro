@@ -1,4 +1,29 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <br><br><br>
+  <h1 class="text-center"><%= @team.title %></h1>
+  <p><%= @team.description %></p>
+  <div id="team-pomodoro-dashboard">
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+    <% @team.members.each do |member| %>
+    <div class="team-user-box offline">
+      <div class="caption">
+        <h3 class="taskOwner"><%= member.email %></h3>
+        <p class="task"></p>
+        <h2 class="remainingTime text-right"></h2>
+      </div>
+    </div>
+    <% end %>
+
+    <div class="team-user-box onPomodoro">
+      <div class="caption">
+        <h3 class="taskOwner">Merve Dönmez</h3>
+        <p class="task">Working on .....</p>
+        <h2 class="remainingTime text-right">14:53</h2>
+      </div>
+    </div>
+
+
+    <div class="clearfix"></div>
+
+  </div>
+</div>
