@@ -60,9 +60,15 @@ p {
   padding: 40px 0;
   }
   
-  body {
-    background-image: url("http://www.wallpapersbyte.com/wp-content/uploads/2015/08/Annapurna-Range-Nepal-Himalayas-Mountains-Sky-Sunset-Nature-WallpapersByte-com-3840x2400.jpg");
+  html {  
+  min-height: 100%
 }
+  body {
+  background: #c94b4b;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #4b134f, #c94b4b);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #4b134f, #c94b4b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
   #brk{
   font-size: 200%;
   }
