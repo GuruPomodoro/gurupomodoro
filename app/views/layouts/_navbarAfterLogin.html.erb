@@ -29,6 +29,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <% if current_team.present? %>
+                    <li><%= link_to("Start Pomodoro", pomodoro_start_path ) %></li>
                     <li><%= link_to("Team Dashboard", current_team ) %></li>
                     <li><%= link_to("Settings", settings_team_path(current_team)) %></li>
                 <% end %>
