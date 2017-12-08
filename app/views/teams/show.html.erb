@@ -1,7 +1,6 @@
 <div class="container">
-  <br><br><br>
   <h1 class="text-center"><%= @team.title %></h1>
-  <p><%= @team.description %></p>
+  <p class="team-description"><%= @team.description %></p>
   <div id="team-pomodoro-dashboard">
 
     <% @team.members.each do |member| %>

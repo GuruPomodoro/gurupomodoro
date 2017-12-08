@@ -1,0 +1,9 @@
+<% if lists.present? %>
+  <div class="list-group">
+    <% lists.each do |list| %>
+      <%= link_to(list.title, select_trello_list_path(list.id), remote: true, method: :post, class: 'list-group-item', id: "trello-list-#{list.id}") %>
+    <% end %>
+  </div>
+<% else %>
+  <p>No lists found. If you think there are lists on trello, try to refresh!</p>
+<% end %>

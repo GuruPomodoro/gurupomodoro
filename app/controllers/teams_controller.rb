@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: [:show, :edit, :update, :destroy]
+  before_action :set_team, only: [:show, :edit, :update, :settings, :set_trello_board]
   # GET /teams/1
   # GET /teams/1.json
   def show
@@ -50,6 +50,12 @@ class TeamsController < ApplicationController
   end
 
   def settings
+  end
+
+  def set_trello_board
+    @team.trello_board_id = params[:trello_board_id]
+    @team.save
+    redirect_to settings_team_path(@team)
   end
 
   private

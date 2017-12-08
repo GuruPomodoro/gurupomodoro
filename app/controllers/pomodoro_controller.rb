@@ -13,4 +13,9 @@ class PomodoroController < ApplicationController
 
   def finished
   end
+
+  def choose_list
+    @list = TrelloList.find(params[:list_id])
+    @tasks = @list.trello_tasks
+  end
 end

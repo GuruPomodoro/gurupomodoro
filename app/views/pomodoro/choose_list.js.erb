@@ -1,0 +1,3 @@
+$('#trello-tasks-refresh').attr("href", "<%= get_trello_tasks_path(@list.id) %>");
+$('#trello-tasks-refresh').show();
+$('#trello-tasks').html("<%= escape_javascript (render partial: 'pomodoro/trello_tasks', locals: { tasks: @tasks }) %>");

@@ -1,130 +1,59 @@
-  <div class="container text-center text-dark bg-light">
-    <h1>Team GuruPomodoro</h1>
-    <p>
-      <font size=5>#Project description</font>
-    </p>
-    <div class="row">
-      <div class="col-md-6 text-left">
-        <div class="thumbnail onPomodoro">
-          <div class="caption">
-            <h3>Members</h3>
-            <div class="well">
-              <ul class="list-group">
-
-                <li class="list-group-item">John Doe
-                  <div class="btn-group btn-center">
-
-
-                    <div class="btn-group">
-
-                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-      Responsibilty
-      <span class="caret"></span>
-    </button>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Team Leader</a></li>
-                        <li><a href="#">Team Member</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <button type="button" class="btn btn-default">x</button>
-
+<div class="container text-center text-dark bg-light">
+  <h1><%= @team.title %> <%= link_to("Edit",  edit_team_path(@team) , class: 'btn btn-small') %></h1>
+  <p class="team-description"><%= @team.description %></p>
+  <div class="row">
+    <div class="col-md-8 text-left">
+      <div>
+        <div class="caption">
+          <h4>Members</h4>
+          <div class="well">
+            <ul class="list-group">
+              <% @team.team_users.includes(:user).each do |team_user| %>
+                <li class="list-group-item">
+                  <span><%= team_user.user.email %></span>
+                  <button type="button" class="btn btn-default float-right btn-xs">x</button>
+                  <span class="label label-info float-right uppercase"><%= team_user.user_type %></span>
+                  <div class="clearfix"></div>
                 </li>
-                <li class="list-group-item">Jane Doe
-                  <div class="btn-group">
-
-
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-      Responsibility
-      <span class="caret"></span>
-    </button>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Team Leader</a></li>
-                        <li><a href="#">Team Member</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <button type="button" class="btn btn-default">x</button>
-                </li>
-                <li class="list-group-item">Jane Doe
-                  <div class="btn-group">
-
-
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-      Responsibility
-      <span class="caret"></span>
-    </button>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Team Leader</a></li>
-                        <li><a href="#">Team Member</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <button type="button" class="btn btn-default">x</button>
-                </li>
-                <li class="list-group-item">John Doe (invited)
-                  <div class="btn-group">
-
-
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-      Responsibility
-      <span class="caret"></span>
-    </button>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Team Leader</a></li>
-                        <li><a href="#">Team Member</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <button type="button" class="btn btn-default">x</button>
-                </li>
-              </ul>
-            </div>
-            <h3>Add New Member</h3>
-            <div class="well">
-              <div class="input-group">
-                <span class="input-group-addon">Name</span>
-                <input type="text" class="form-control" placeholder="Username">
-              </div>
-
-              <div class="input-group">
-                <span class="input-group-addon">E-mail</span>
-                <input type="text" class="form-control" placeholder="Usermail">
-              </div>
-              <div class="center">
-                <button type="button" class="btn btn-primary">Add</button>
-              </div>
-            </div>
+              <% end %>
+            </ul>
           </div>
-        </div>
-      </div>
-      <div class="col-md-6 text-left">
-        <div class="thumbnail onPomodoro">
-          <div class="caption">
-            <h3>Trello</h3>
-            <div class="well text-center">
-              <p>Connect to Trello</p>
+          <h4>Add New Member</h4>
+          <div class="well">
+            <div class="input-group">
+              <span class="input-group-addon">Name</span>
+              <input type="text" class="form-control" placeholder="Username">
             </div>
-            <h3>Select Trello Board</h3>
-            <div class="well">
-              <div class="list-group">
-                <a href="#" class="list-group-item active">
-    Cras justo odio
-  </a>
-                <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item">Morbi leo risus</a>
-                <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item">Vestibulum at eros</a>
-              </div>
-              <div class="center">
-                <button type="button" class="btn btn-primary">Select</button>
-              </div>
+            <div class="input-group">
+              <span class="input-group-addon">E-mail</span>
+              <input type="text" class="form-control" placeholder="Usermail">
+            </div>
+            <div class="center">
+              <button type="button" class="btn btn-primary">Add</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="col-md-4 text-left">
+      <div>
+        <div class="caption">
+          <h4>Trello Integration</h4>
+          <div class="well">
+            <% unless current_user.uid.present? %>
+              <%= link_to("Connect to Trello", user_trello_omniauth_authorize_path , class: 'btn btn-lg btn-block btn-primary') %>
+            <% else %>
+              <p>Select which trello board you wanted to connect with your team</p>
+              <%= link_to "Refresh", get_trello_boards_path, class: 'btn btn-xs', id: "team-trello-board-refresh" %>
+              <div class="list-group" id="team-trello-boards">
+                <% current_user.trello_boards.each do |board| %>
+                  <%= link_to(board['title'], set_trello_board_team_path(current_team, trello_board_id: board['id']) , class: "list-group-item #{ board['id'] == @team.trello_board_id ? 'active' : '' }") %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>

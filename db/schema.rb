@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207161124) do
+ActiveRecord::Schema.define(version: 20171208014450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,35 @@ ActiveRecord::Schema.define(version: 20171207161124) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "trello_board_id"
+  end
+
+  create_table "trello_lists", force: :cascade do |t|
+    t.string "title"
+    t.string "trello_id"
+    t.string "trello_board_id"
+    t.bigint "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "active"
+    t.index ["active"], name: "index_trello_lists_on_active"
+    t.index ["team_id"], name: "index_trello_lists_on_team_id"
+    t.index ["trello_board_id"], name: "index_trello_lists_on_trello_board_id"
+    t.index ["trello_id"], name: "index_trello_lists_on_trello_id"
+  end
+
+  create_table "trello_tasks", force: :cascade do |t|
+    t.string "title"
+    t.string "trello_id"
+    t.bigint "team_id"
+    t.bigint "trello_list_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "active"
+    t.index ["active"], name: "index_trello_tasks_on_active"
+    t.index ["team_id"], name: "index_trello_tasks_on_team_id"
+    t.index ["trello_id"], name: "index_trello_tasks_on_trello_id"
+    t.index ["trello_list_id"], name: "index_trello_tasks_on_trello_list_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -88,6 +117,7 @@ ActiveRecord::Schema.define(version: 20171207161124) do
     t.datetime "updated_at", null: false
     t.string "trello_token"
     t.string "trello_secret"
+    t.jsonb "trello_boards", default: []
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -100,4 +130,7 @@ ActiveRecord::Schema.define(version: 20171207161124) do
   add_foreign_key "team_invitations", "users", column: "from_id"
   add_foreign_key "team_users", "teams"
   add_foreign_key "team_users", "users"
+  add_foreign_key "trello_lists", "teams"
+  add_foreign_key "trello_tasks", "teams"
+  add_foreign_key "trello_tasks", "trello_lists"
 end

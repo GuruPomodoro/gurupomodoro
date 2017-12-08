@@ -1,0 +1,9 @@
+<% if tasks.present? %>
+  <div class="list-group">
+    <% tasks.each do |task| %>
+      <%= link_to(task.title, "#", method: :post, class: 'list-group-item select-trello-task', id: "trello-task-#{task.id}", data: {id: task.id}) %>
+    <% end %>
+  </div>
+<% else %>
+  <p>No tasks found. If you add new tasks on trello, try to refresh!</p>
+<% end %>

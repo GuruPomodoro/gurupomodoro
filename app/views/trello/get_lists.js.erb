@@ -1,0 +1,1 @@
+$('#trello-lists').html("<%= escape_javascript (render partial: 'pomodoro/trello_lists', locals: { lists: current_team.trello_lists.with_trello_board_id(current_team.trello_board_id) }) %>");

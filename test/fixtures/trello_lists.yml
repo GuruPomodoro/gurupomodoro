@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  trello_id: MyString
+  trello_board_id: MyString
+  team: one
+
+two:
+  title: MyString
+  trello_id: MyString
+  trello_board_id: MyString
+  team: two

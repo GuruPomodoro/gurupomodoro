@@ -4,4 +4,6 @@ class Team < ApplicationRecord
   has_many :members, class_name: 'User', through: :team_users, source: :user
   has_many :leaders, class_name: 'User', through: :team_leaders, source: :user
   has_many :invitations
+  has_many :trello_lists
+  has_many :trello_tasks
 end
