@@ -33,7 +33,8 @@ var x = setInterval(function() {
 }, 1000);
 </script>
 <div id = "break">
-<button type="button" class="btn btn-primary">Start a new pomodoro</button>
+
+<%= button_to "Start a new pomodoro", { :action => "start" }, :method => :get , class:"btn btn-primary" %> 
 </div>
 </div>
 

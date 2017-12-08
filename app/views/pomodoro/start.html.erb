@@ -25,6 +25,6 @@
   <% end %>
 
   <div class="text-center">
-    <button type="button" class="btn btn-primary btn-xl">Start Your Pomodoro</button>
+    <%= button_to "Start your pomodoro", { :action => "begin" }, :method => :get , class:"btn btn-primary" %> 
   </div>
 </div>
