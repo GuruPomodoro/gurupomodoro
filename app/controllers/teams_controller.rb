@@ -50,6 +50,12 @@ class TeamsController < ApplicationController
   end
 
   def settings
+    @trello_boards = current_user.trello_boards
+    if @team.trello_board_id.present?
+      selected_trello_board = @trello_boards.select { |board| board['id'] == @team.trello_board_id }
+      @trello_boards = @trello_boards.delete_if { |board| board['id'] == @team.trello_board_id }
+      @trello_boards = selected_trello_board + @trello_boards
+    end
   end
 
   def set_trello_board

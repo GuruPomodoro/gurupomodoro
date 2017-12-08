@@ -46,7 +46,7 @@
               <p>Select which trello board you wanted to connect with your team</p>
               <%= link_to "Refresh", get_trello_boards_path, class: 'btn btn-xs', id: "team-trello-board-refresh" %>
               <div class="list-group" id="team-trello-boards">
-                <% current_user.trello_boards.each do |board| %>
+                <% @trello_boards.each do |board| %>
                   <%= link_to(board['title'], set_trello_board_team_path(current_team, trello_board_id: board['id']) , class: "list-group-item #{ board['id'] == @team.trello_board_id ? 'active' : '' }") %>
                 <% end %>
               </div>
