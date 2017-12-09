@@ -3,7 +3,16 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
-    session[:team_id] = @team.id
+    if session[:team_id].present? && session[:team_id] != @team.id
+      TeamChannel.broadcast_to(
+        current_team,
+        sent_by: current_user.id,
+        body: 'Logout'
+      )
+      set_team_session
+    elsif !session[:team_id].present?
+      set_team_session
+    end
   end
 
   # GET /teams/new
@@ -65,6 +74,16 @@ class TeamsController < ApplicationController
   end
 
   private
+
+    def set_team_session
+      session[:team_id] = @team.id
+      TeamChannel.broadcast_to(
+        current_team,
+        sent_by: current_user.id,
+        body: 'Login'
+      )
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_team
       @team = Team.find(params[:id])

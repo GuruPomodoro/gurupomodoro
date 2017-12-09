@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171208014450) do
+ActiveRecord::Schema.define(version: 20171209095427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,8 +33,10 @@ ActiveRecord::Schema.define(version: 20171208014450) do
     t.boolean "is_break"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "trello_task_id"
     t.index ["interruption_id"], name: "index_pomodoros_on_interruption_id"
     t.index ["team_id"], name: "index_pomodoros_on_team_id"
+    t.index ["trello_task_id"], name: "index_pomodoros_on_trello_task_id"
     t.index ["user_id"], name: "index_pomodoros_on_user_id"
   end
 
@@ -125,6 +127,7 @@ ActiveRecord::Schema.define(version: 20171208014450) do
   add_foreign_key "interruptions", "users"
   add_foreign_key "pomodoros", "interruptions"
   add_foreign_key "pomodoros", "teams"
+  add_foreign_key "pomodoros", "trello_tasks"
   add_foreign_key "pomodoros", "users"
   add_foreign_key "team_invitations", "teams"
   add_foreign_key "team_invitations", "users", column: "from_id"

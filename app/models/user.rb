@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :team_leaders, -> { where user_type: 'leader' }, class_name: 'TeamUser'
   has_many :teams, through: :team_users
   has_many :owned_teams, class_name: 'Team', through: :team_leaders, source: :team
+  has_many :pomodoros
 
  def self.from_trello(auth)
   where(email: auth.info.email).first_or_create do |user|
@@ -20,5 +21,13 @@ class User < ApplicationRecord
     user.trello_secret = auth.credentials.secret
     user.skip_confirmation!
   end
+ end
+
+ def current_pomodoro
+   pomodoros.unscoped.where("started_at <= ? AND finished_at >= ?", DateTime.now, DateTime.now).first
+ end
+
+ def current_pomodoro_without_break
+   pomodoros.where("started_at <= ? AND finished_at >= ?", DateTime.now, DateTime.now).first
  end
 end

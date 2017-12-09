@@ -1,0 +1,37 @@
+<div class="team-user-box <%= team_user_box_class(user, state) %>" id="team-user-box-<%= user.id %>">
+  <div class="caption">
+    <h3 class="taskOwner"><%= user.email %></h3>
+    <p class="task"><%= team_user_box_task(user) %></p>
+    <h2 class="remainingTime text-right"></h2>
+  </div>
+</div>
+
+<script>
+  window.pomodoroDatas = window.pomodoroDatas || {};
+
+  if (typeof pomodoroDatas['<%= user.id %>'] != "undefined") {
+    if (typeof pomodoroDatas['<%= user.id %>'].interval != "undefined") {
+      clearInterval(pomodoroDatas['<%= user.id %>'].interval);
+    }
+  }
+  <% if user.current_pomodoro.present? %>
+    pomodoroDatas['<%= user.id %>'] = {};
+    pomodoroDatas['<%= user.id %>'].boxId = '#team-user-box-' + '<%= user.id %>';
+    pomodoroDatas['<%= user.id %>'].pomodoroFinishedAt = <%= user.current_pomodoro.finished_at.to_i * 1000 %>;
+
+    pomodoroDatas['<%= user.id %>'].showTimer = function() {
+      pomodoroDatas['<%= user.id %>'].distance = pomodoroDatas['<%= user.id %>'].pomodoroFinishedAt - new Date().getTime();
+      if (pomodoroDatas['<%= user.id %>'].distance < 0) {
+          clearInterval(pomodoroDatas['<%= user.id %>'].interval);
+      } else {
+          pomodoroDatas['<%= user.id %>'].minutes = Math.floor((pomodoroDatas['<%= user.id %>'].distance % (1000 * 60 * 60)) / (1000 * 60));
+          pomodoroDatas['<%= user.id %>'].seconds = Math.floor((pomodoroDatas['<%= user.id %>'].distance % (1000 * 60)) / 1000);
+          $(pomodoroDatas['<%= user.id %>'].boxId + ' .remainingTime').html(pomodoroDatas['<%= user.id %>'].minutes + "m " + pomodoroDatas['<%= user.id %>'].seconds + "s ");
+      }
+    }
+    pomodoroDatas['<%= user.id %>'].showTimer();
+    pomodoroDatas['<%= user.id %>'].interval = setInterval(pomodoroDatas['<%= user.id %>'].showTimer, 1000)
+  <% end %>
+</script>
+
+

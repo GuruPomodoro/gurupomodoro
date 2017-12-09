@@ -1,7 +1,7 @@
 <% if lists.present? %>
   <div class="list-group">
     <% lists.each do |list| %>
-      <%= link_to(list.title, select_trello_list_path(list.id), remote: true, method: :post, class: 'list-group-item', id: "trello-list-#{list.id}") %>
+      <%= link_to(list.title, select_trello_list_path(list.id), remote: true, method: :post, class: 'list-group-item select-trello-list', id: "trello-list-#{list.id}") %>
     <% end %>
   </div>
 <% else %>

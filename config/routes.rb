@@ -1,33 +1,23 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
+
   get 'pomodoro/start'
-
-  get 'pomodoro/begin'
-
+  post 'pomodoro/begin'
+  get 'pomodoro/during'
   post 'pomodoro/choose_list/:list_id', to: "pomodoro#choose_list", as: 'select_trello_list'
-
-  get 'pomodoro/break_start'
-
+  post 'pomodoro/break_start/:duration', to: "pomodoro#break_start", as: 'pomodoro_break_start'
   get 'pomodoro/interrupt'
-
+  post 'pomodoro/submit_interrupt'
+  post 'pomodoro/interrupt_break'
   get 'pomodoro/finished'
 
-  get 'testpages/finish'
 
-  get 'testpages/during'
-
-  get 'testpages/interrupt'
-
-  get 'testpages/break'
 
   get 'invitations/create'
-
   get 'invitations/accept'
-
   get 'invitations/show'
 
   get '/about', to: 'welcome#about'
-
-  root 'welcome#index'
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -45,6 +35,7 @@ Rails.application.routes.draw do
   post 'trello/get_lists', as: 'get_trello_lists'
   post 'trello/get_tasks/:list_id', to: "trello#get_tasks", as: 'get_trello_tasks'
 
+  root 'welcome#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

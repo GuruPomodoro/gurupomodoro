@@ -1,9 +1,25 @@
 <% if tasks.present? %>
   <div class="list-group">
     <% tasks.each do |task| %>
-      <%= link_to(task.title, "#", method: :post, class: 'list-group-item select-trello-task', id: "trello-task-#{task.id}", data: {id: task.id}) %>
+      <%= link_to("#", class: 'list-group-item select-trello-task', id: "trello-task-#{task.id}", data: {id: task.id}) do %>
+        <%= task.title %>
+        <% if task.pomodoros.count > 0 %>
+          <span class="badge"><%= task.pomodoros.count %></span>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
 <% else %>
   <p>No tasks found. If you add new tasks on trello, try to refresh!</p>
 <% end %>
+
+
+<script>
+  $('.select-trello-task').on('click', function(e) {
+    e.preventDefault();
+    var trelloId = $(this).data('id');
+    $('.select-trello-task').removeClass('active');
+    $('#trello-task-' + trelloId).addClass('active');
+    $('#trello_task_id').val(trelloId);
+  });
+</script>

@@ -4,6 +4,8 @@ class TrelloTask < ApplicationRecord
   belongs_to :team
   belongs_to :trello_list
 
+  has_many :pomodoros
+
   scope :without_trello_ids,           -> (trello_ids) { where.not(trello_id: trello_ids) }
 
 end

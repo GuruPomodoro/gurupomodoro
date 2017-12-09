@@ -1,3 +1,6 @@
 $('#trello-tasks-refresh').attr("href", "<%= get_trello_tasks_path(@list.id) %>");
 $('#trello-tasks-refresh').show();
 $('#trello-tasks').html("<%= escape_javascript (render partial: 'pomodoro/trello_tasks', locals: { tasks: @tasks }) %>");
+$('.select-trello-list').removeClass('active');
+$('#trello-list-' + '<%= @list.id %>').addClass('active');
+$('#trello_task_id').val('');

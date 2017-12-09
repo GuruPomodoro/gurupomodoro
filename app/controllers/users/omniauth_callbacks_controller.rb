@@ -5,9 +5,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       session[:team_id] = @user.teams.first&.id
+      TeamChannel.broadcast_to(
+        current_team,
+        sent_by: @user.id,
+        state: 'Login',
+        html: ApplicationController.render_with_signed_in_user(current_user, partial: 'teams/user_pomodoro_box', locals: {user: @user, state: 'Login'})
+      )
       sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
       set_flash_message(:notice, :success, :kind => "trello") if is_navigational_format?
-
     else
       session["devise.oauth_provider"] = 'trello'
       # session["devise.oauth_data"] = request.env["omniauth.auth"]

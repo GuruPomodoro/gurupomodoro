@@ -1,0 +1,30 @@
+<% provide(:title, "Pomodoro") %>
+
+<div id="counter">
+  <p id="pom">Your <%= @pomodoro.is_break ? 'Break' : 'Pomodoro' %> will finish in</p>
+  <p id="countdown"></p>
+
+  <script>
+    var pomodoroFinishedAt = <%= @pomodoro.finished_at.to_i * 1000 %>;
+    var showTimer = function() {
+      var distance = pomodoroFinishedAt - new Date().getTime();
+      if (distance < 0) {
+          clearInterval(pomodoroInterval);
+          location.pathname = '<%= @pomodoro.is_break ? "/pomodoro/start": "/pomodoro/finished" %>';
+      } else {
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          document.getElementById("countdown").innerHTML = minutes + "m " + seconds + "s ";
+      }
+    }
+    showTimer();
+    var pomodoroInterval = setInterval(showTimer, 1000);
+  </script>
+  <div id = "break">
+    <% unless @pomodoro.is_break %>
+      <%= link_to("Interrupt", pomodoro_interrupt_path , class: "btn btn-primary") %>
+    <% else %>
+      <%= link_to("Start New Pomodoro", pomodoro_interrupt_break_path, method: :post, class: "btn btn-primary") %>
+    <% end %>
+  </div>
+</div>

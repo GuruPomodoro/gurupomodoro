@@ -6,8 +6,12 @@
   <div id = "break">
     <p id="brk"></p>
   <div id="buttons">
-  <button type="button" class="btn btn-primary btn-lg" id="btn1">5</button>
-  <button type="button" class="btn btn-primary btn-lg" id="btn2">10</button>
-  <button type="button" class="btn btn-primary btn-lg" id="btn3">15</button></div>
+    <%= link_to("5", pomodoro_break_start_path(5), method: :post, class: "btn btn-primary btn-lg") %>
+    <%= link_to("10", pomodoro_break_start_path(10), method: :post, class: "btn btn-primary btn-lg") %>
+    <%= link_to("15", pomodoro_break_start_path(15), method: :post, class: "btn btn-primary btn-lg") %>
+
+    <br>
+    <br>
+    <%= link_to("Start New Pomodoro", pomodoro_start_path, class: "btn btn-primary") %>
   </div>
 </div>
