@@ -5,9 +5,9 @@
   <p id="demo"></p>
 
   <div id="textarea1">
-  <form action="/action_page.php">
+  <form action="start">
     <textarea name="message" rows="6" cols="50" placeholder= "Enter your reason here"></textarea>
     <br>
-    <input type="submit" class="btn btn-primary btn-lg" id="btn1" value = "SUBMIT">
+    <%= button_to "Submit", { :action => "start" }, :method => :get , class:"btn btn-primary" %> 
   </form>
 </div>
