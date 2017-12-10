@@ -32,4 +32,8 @@ class User < ApplicationRecord
  def current_pomodoro_without_break
    pomodoros.where("started_at <= ? AND finished_at >= ?", DateTime.now, DateTime.now).first
  end
+
+ def leader_of(team)
+   team.leaders.include?(self)
+ end
 end

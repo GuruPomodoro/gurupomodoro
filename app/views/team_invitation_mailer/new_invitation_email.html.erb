@@ -1,0 +1,5 @@
+<p>Hi <%= @team_invitation.to_name %>!</p>
+
+<p><%= @user.full_name %> invited you to <%= @team.title %> team on GuruPomodoro.</p>
+
+<p><%= link_to 'Accept Invitation', accept_team_invitation_url(@team_invitation) %></p>

@@ -1,0 +1,5 @@
+<p>Hi <%= @user.full_name %>!</p>
+
+<p>Thank you for accepting invitation. We created a GuruPomodoro accout for you. Your temporary password is <%= @password %>, please update it as soon as possible.</p>
+
+<p><li><%= link_to("Update Your Password", edit_user_registration_url) %></li></p>

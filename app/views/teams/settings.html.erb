@@ -11,8 +11,18 @@
               <% @team.team_users.includes(:user).each do |team_user| %>
                 <li class="list-group-item">
                   <span><%= team_user.user.email %></span>
-                  <button type="button" class="btn btn-default float-right btn-xs">x</button>
-                  <span class="label label-info float-right uppercase"><%= team_user.user_type %></span>
+                  <% if (team_user.user != current_user) %>
+                    <%= link_to 'x',  team_user,  method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default float-right btn-xs' %>
+                  <% end %>
+                  <span class="label <%= team_user.user_type == 'leader' ? 'label-primary' : 'label-info' %> float-right uppercase"><%= team_user.user_type %></span>
+                  <div class="clearfix"></div>
+                </li>
+              <% end %>
+              <% @team.team_invitations.each do |invitation| %>
+                <li class="list-group-item">
+                  <span><%= invitation.to_name %> (<%= invitation.to_email %> )</span>
+                  <%= link_to 'x',  invitation,  method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default float-right btn-xs' %>
+                  <span class="label label-default float-right uppercase">invited</span>
                   <div class="clearfix"></div>
                 </li>
               <% end %>
@@ -20,17 +30,24 @@
           </div>
           <h4>Add New Member</h4>
           <div class="well">
-            <div class="input-group">
-              <span class="input-group-addon">Name</span>
-              <input type="text" class="form-control" placeholder="Username">
-            </div>
-            <div class="input-group">
-              <span class="input-group-addon">E-mail</span>
-              <input type="text" class="form-control" placeholder="Usermail">
-            </div>
-            <div class="center">
-              <button type="button" class="btn btn-primary">Add</button>
-            </div>
+            <%= form_with(model: @team_invitation, local: true, class: 'form-inline') do |form| %>
+              <div class="form-group">
+                  <div class="input-group">
+                  <%= form.label :to_name, 'Name', class: 'input-group-addon' %>
+                  <%= form.text_field :to_name, class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="input-group">
+                  <%= form.label :to_email, 'Email', class: 'input-group-addon' %>
+                  <%= form.text_field :to_email, class: 'form-control' %>
+                </div>
+              </div>
+
+
+              <%= form.submit 'Invite', :class => 'btn btn-primary' %>
+            <% end %>
           </div>
         </div>
       </div>

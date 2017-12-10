@@ -32,6 +32,14 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :team_invitations, only: [:create, :destroy] do
+    member do
+      get 'accept'
+    end
+  end
+
+  resources :team_users, only: [:destroy]
+
   get 'trello/get_boards', as: 'get_trello_boards'
   post 'trello/get_lists', as: 'get_trello_lists'
   post 'trello/get_tasks/:list_id', to: "trello#get_tasks", as: 'get_trello_tasks'
