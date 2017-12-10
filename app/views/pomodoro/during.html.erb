@@ -1,6 +1,6 @@
 <% provide(:title, "Pomodoro") %>
 
-<div id="counter">
+<div id="pomodoro-page">
   <p id="pom">Your <%= @pomodoro.is_break ? 'Break' : 'Pomodoro' %> will finish in</p>
   <p id="countdown"></p>
 
@@ -14,7 +14,9 @@
       } else {
           var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
           var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-          document.getElementById("countdown").innerHTML = minutes + "m " + seconds + "s ";
+          var countdown = minutes + "m " + seconds + "s ";
+          document.title = '<%= @pomodoro.is_break ? 'Break | ' : 'Pomodoro | ' %>' + countdown;
+          document.getElementById("countdown").innerHTML = countdown;
       }
     }
     showTimer();
@@ -22,9 +24,9 @@
   </script>
   <div id = "break">
     <% unless @pomodoro.is_break %>
-      <%= link_to("Interrupt", pomodoro_interrupt_path , class: "btn btn-primary") %>
+      <%= link_to("Interrupt", pomodoro_interrupt_path , class: "btn btn-primary btn-xl btn-lg") %>
     <% else %>
-      <%= link_to("Start New Pomodoro", pomodoro_interrupt_break_path, method: :post, class: "btn btn-primary") %>
+      <%= link_to("Start New Pomodoro", pomodoro_interrupt_break_path, method: :post, class: "btn btn-primary btn-xl btn-lg") %>
     <% end %>
   </div>
 </div>

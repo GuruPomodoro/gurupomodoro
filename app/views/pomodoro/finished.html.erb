@@ -1,17 +1,19 @@
 <% provide(:title, "Finished") %>
-<div class="container text-center text-dark bg-light">
+<div id="pomodoro-page" class="container text-center text-dark bg-light">
   <h1>Congratulations!</h1>
-    <p><font size=5>Your Pomodoro has ended. Take a break, you deserved it.</font></p>
-  <p id="demo"></p>
-  <div id = "break">
-    <p id="brk"></p>
+  <p><font size=5>Your Pomodoro has ended. Take a break, you deserved it.</font></p>
+  <br>
+  <br>
+  <br>
   <div id="buttons">
-    <%= link_to("5", pomodoro_break_start_path(5), method: :post, class: "btn btn-primary btn-lg") %>
-    <%= link_to("10", pomodoro_break_start_path(10), method: :post, class: "btn btn-primary btn-lg") %>
-    <%= link_to("15", pomodoro_break_start_path(15), method: :post, class: "btn btn-primary btn-lg") %>
+    <%= link_to("5", pomodoro_break_start_path(5), method: :post, class: "btn btn-success btn-xl btn-lg") %>
+    <%= link_to("10", pomodoro_break_start_path(10), method: :post, class: "btn btn-success btn-xl btn-lg") %>
+    <%= link_to("15", pomodoro_break_start_path(15), method: :post, class: "btn btn-success btn-xl btn-lg") %>
 
     <br>
     <br>
-    <%= link_to("Start New Pomodoro", pomodoro_start_path, class: "btn btn-primary") %>
+    <br>
+    <br>
+    <%= link_to("Start New Pomodoro", pomodoro_start_path, class: "btn btn-primary  btn-xl btn-lg") %>
   </div>
 </div>

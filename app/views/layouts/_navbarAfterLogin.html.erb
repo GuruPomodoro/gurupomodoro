@@ -33,7 +33,7 @@
                     <li><%= link_to("Team Dashboard", current_team ) %></li>
                     <li><%= link_to("Settings", settings_team_path(current_team)) %></li>
                 <% end %>
-                <li><%= link_to("Create New Team", new_team_path) %></li>
+                <li><%= link_to("Edit Account", edit_user_registration_path) %></li>
                 <li><%= link_to('Sign Out', destroy_user_session_path, method: :delete) %></li>
             </ul>
         </div>

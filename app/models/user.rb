@@ -12,15 +12,17 @@ class User < ApplicationRecord
   has_many :pomodoros
 
  def self.from_trello(auth)
-  where(email: auth.info.email).first_or_create do |user|
-    user.provider = auth.provider
-    user.uid = auth.uid
-    user.email = auth.info.email
-    user.password = Devise.friendly_token[0,20]
-    user.trello_token = auth.credentials.token
-    user.trello_secret = auth.credentials.secret
-    user.skip_confirmation!
-  end
+  user = User.where(email: auth.info.email).first_or_initialize
+  user.provider = auth.provider
+  user.uid = auth.uid
+  user.email = auth.info.email
+  user.full_name = auth.info.name
+  user.password = Devise.friendly_token[0,20]
+  user.trello_token = auth.credentials.token
+  user.trello_secret = auth.credentials.secret
+  user.skip_confirmation!
+  user.save
+  user
  end
 
  def current_pomodoro
