@@ -3,6 +3,7 @@
     <%= @team.title %>
     <% if current_user.leader_of(@team) %>
       <small><%= link_to("Settings", settings_team_path(current_team), class: 'btn btn-xs') %></small>
+      <small><%= link_to("Team Reports", teamreport_path, class: 'btn btn-xs') %></small>
     <% end %>
     </h1><br>
   <p class="team-description text-center"><%= @team.description %></p>
