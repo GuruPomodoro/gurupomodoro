@@ -1,0 +1,111 @@
+  <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+  <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+  <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+  <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+  <style>
+	p {
+  font-size: 60px;
+	}
+	.counter{
+	padding: 10px 0;
+	}
+  #title{
+  text-align: center;
+  }
+  #brk{
+	font-size: 200%;
+  }
+  #break{ text-align: left; width: 50%;}
+
+  #chartdiv {
+  margin:auto;
+  width   : 60%;
+  height    : 250px;
+  font-size : 11px;
+}
+#chartdiv2 {
+  margin:auto;
+  width   : 60%;
+  height    : 250px;
+  font-size : 11px;
+  }
+
+  table {
+      background-color: rgba(165, 48, 230, 0.2);
+  }
+</style>
+
+<div class="counter">
+<h3 id= "title">Weekly Pomodoro Chart<br> </h3>
+
+<div id="chartdiv"></div>
+<br>
+
+<div id="counter">
+<h3 id= "title">Personal Tasks<br> </h3>
+
+<div class="container">
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Team</th>
+        <th>Task</th>
+        <th>Duration(min)</th>
+        <th>Interrupted?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pomodoros.each do |pomodoro| %>
+      <tr>
+        <td><%= pomodoro.team.title %></td>
+        <td><%= pomodoro.trello_task&.title || 'no task selected'%></td>
+        <td><%= ((pomodoro.finished_at - pomodoro.started_at) / 60).to_i %></td>
+        <td><% if pomodoro.interruption_id? %>
+          <%= 'Yes(' + pomodoro.interruption.reason + ')' %>
+          <% else %>
+          <%= 'No' %>
+        <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>
+
+
+<script>
+var chart = AmCharts.makeChart( "chartdiv", {
+  "type": "serial",
+  "theme": "light",
+  "dataProvider": <%= @arr2.to_json.html_safe%> ,
+  "gridAboveGraphs": true,
+  "startDuration": 1,
+  "graphs": [ {
+    "balloonText": "[[category]]: <b>[[value]]</b>",
+    "fillAlphas": 0.8,
+    "lineAlpha": 0.2,
+    "type": "column",
+    "valueField": "hours"
+  } ],
+  "chartCursor": {
+    "categoryBalloonEnabled": false,
+    "cursorAlpha": 0,
+    "zoomable": false
+  },
+  "categoryField": "day",
+  "categoryAxis": {
+    "gridPosition": "start",
+    "gridAlpha": 0,
+    "tickPosition": "start",
+    "tickLength": 20
+  },
+  "export": {
+    "enabled": true
+  }
+
+} );
+</script>
+
+</div>

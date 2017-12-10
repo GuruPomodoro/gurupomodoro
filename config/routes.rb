@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   post 'pomodoro/interrupt_break'
   get 'pomodoro/finished'
 
-
+  get '/personalreport', to: 'report#personalreport'
+  get '/teamreport', to: 'report#teamreport'
 
   get 'invitations/create'
   get 'invitations/accept'
