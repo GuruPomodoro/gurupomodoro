@@ -1,5 +1,8 @@
 <div class="container text-center text-dark bg-light">
-  <h1><%= @team.title %> <%= link_to("Edit",  edit_team_path(@team) , class: 'btn btn-small') %></h1>
+  <h1>
+    <%= @team.title %>
+    <small><%= link_to("Edit",  edit_team_path(@team) , class: 'btn btn-sm') %></small>
+  </h1><br>
   <p class="team-description"><%= @team.description %></p>
   <div class="row">
     <div class="col-md-8 text-left">

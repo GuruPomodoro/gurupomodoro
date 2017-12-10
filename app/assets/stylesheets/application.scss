@@ -1,6 +1,7 @@
 @import "bootstrap";
+@import "header";
 
-//a {color: red;}
+
 .team-description {
     font-size: 18px;
     margin: -10px 0 20px;
@@ -82,15 +83,10 @@ html {
 }
 
 body {
-    background: #BE93C5;
-
-    /* fallback for old browsers */
+    background: #7BC6CC;
     background: -webkit-linear-gradient(to top, #7BC6CC, #BE93C5);
-
-    /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to top, #7BC6CC, #BE93C5);
-
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: 'Open-Sans', arial;
 }
 
 #brk {

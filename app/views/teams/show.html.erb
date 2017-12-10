@@ -1,6 +1,12 @@
 <div class="container">
-  <h1 class="text-center"><%= @team.title %></h1><br>
+  <h1 class="text-center">
+    <%= @team.title %>
+    <% if current_user.leader_of(@team) %>
+      <small><%= link_to("Settings", settings_team_path(current_team), class: 'btn btn-xs') %></small>
+    <% end %>
+    </h1><br>
   <p class="team-description text-center"><%= @team.description %></p>
+  <div></div>
   <div id="team-pomodoro-dashboard">
     <% @team.members.each do |member| %>
       <div id="team-user-box-outer-<%= member.id %>">
