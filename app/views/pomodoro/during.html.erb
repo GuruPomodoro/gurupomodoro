@@ -24,9 +24,9 @@
   </script>
   <div id = "break">
     <% unless @pomodoro.is_break %>
-      <%= link_to("Interrupt", pomodoro_interrupt_path , class: "btn btn-primary btn-xl btn-lg") %>
+      <%= link_to("Interrupt", pomodoro_interrupt_path , class: "btn btn-primary btn-xl btn-lg", id: 'interrupt') %>
     <% else %>
-      <%= link_to("Start New Pomodoro", pomodoro_interrupt_break_path, method: :post, class: "btn btn-primary btn-xl btn-lg") %>
+      <%= link_to("Start New Pomodoro", pomodoro_interrupt_break_path, method: :post, class: "btn btn-primary btn-xl btn-lg", id: 'startpomodoro') %>
     <% end %>
   </div>
 </div>

@@ -6,14 +6,14 @@
   <br>
   <br>
   <div id="buttons">
-    <%= link_to("5", pomodoro_break_start_path(5), method: :post, class: "btn btn-success btn-xl btn-lg") %>
-    <%= link_to("10", pomodoro_break_start_path(10), method: :post, class: "btn btn-success btn-xl btn-lg") %>
-    <%= link_to("15", pomodoro_break_start_path(15), method: :post, class: "btn btn-success btn-xl btn-lg") %>
+    <%= link_to("5", pomodoro_break_start_path(5), method: :post, class: "btn btn-success btn-xl btn-lg", name: 'break5') %>
+    <%= link_to("10", pomodoro_break_start_path(10), method: :post, class: "btn btn-success btn-xl btn-lg", name: 'break10') %>
+    <%= link_to("15", pomodoro_break_start_path(15), method: :post, class: "btn btn-success btn-xl btn-lg", name: 'break15') %>
 
     <br>
     <br>
     <br>
     <br>
-    <%= link_to("Start New Pomodoro", pomodoro_start_path, class: "btn btn-primary  btn-xl btn-lg") %>
+    <%= link_to("Start New Pomodoro", pomodoro_start_path, class: "btn btn-primary  btn-xl btn-lg", id: 'startpomodoro') %>
   </div>
 </div>

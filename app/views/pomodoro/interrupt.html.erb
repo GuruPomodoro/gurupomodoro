@@ -7,7 +7,7 @@
     <%= form_tag(pomodoro_submit_interrupt_path) do %>
       <%= text_area_tag :reason, "", rows:"6", cols:"50", placeholder:"Enter your reason here" %>
       <br>
-      <%= submit_tag 'SUBMIT', class: 'btn btn-primary btn-lg' %>
+      <%= submit_tag 'SUBMIT', class: 'btn btn-primary btn-lg', id: 'interruptsubmit' %>
     <% end %>
   </div>
 </div>

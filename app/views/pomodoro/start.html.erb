@@ -27,7 +27,7 @@
   <div class="text-center">
     <%= form_tag(pomodoro_begin_path) do %>
       <%= hidden_field_tag :trello_task_id %>
-      <%= submit_tag 'Start Your Pomodoro', class: 'btn btn-primary btn-xl' %>
+      <%= submit_tag 'Start Your Pomodoro', class: 'btn btn-primary btn-xl', id: 'startpomodoro' %>
     <% end %>
   </div>
 </div>
