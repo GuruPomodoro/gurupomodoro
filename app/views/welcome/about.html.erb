@@ -1,31 +1,100 @@
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 <body>
-
   <div class="container text-center text-dark bg-light">
-    <h1>About GuruPomodoro</h1>
-    
-    <div class="row">
-      <div class="col-md-12 text-left">
-        <div class="thumbnail onPomodoro">
-          <div class="caption">
-            <ul class="list-group">
-              <li class="list-group-item">GuruPomodoro is a web application built on pomodoro technique in order to increase productivity, communication and efficient time management for small to medium teams.</li>
-              <li class="list-group-item">It took 12 weeks to analyse, design, implement and test the project. After all these phases, we had a well-built and dynamic web application. </li>
-              <li class="list-group-item">The advantages of Ruby on Rails was mainly used in this project.</li>
-              <li class="list-group-item">Especially, MVC model was the main idea while creating the backend of the project. Besides, Postgresql was used to manage databases.</li>
-              <li class="list-group-item">Bootstrap, HTML5 and CSS3 were the main frameworks while creating frontend of the project.</li>
-              <li class="list-group-item">The developers are Computer Engineering students at ITU.</li>
-            </ul>
-            <ul class="list-group">
-              <li class="list-group-item">Lütfi Demirci – Database Design / Full Stack Developer / Test Developer</li>
-              <li class="list-group-item">Mustafa Çoban – Database Design / Full Stack Developer / Documentation </li>
-              <li class="list-group-item">Umutcan Karakaş – Database Design / Full Stack Developer / Test Developer</li>
-              <li class="list-group-item">Merve Gonca Dönmez – Designer / Full Stack Developer / Test Developer</li>
-              <li class="list-group-item">Buse Dilan Uslan – Designer / Full Stack Developer / Documentation</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
 
+  <div class="jumbotron">
+  <h1 class="display-3">About GuruPomodoro</h1>
+  <p class="lead">GuruPomodoro is a web application built on pomodoro technique in order to increase productivity, communication and efficient time management for small to medium teams.</p>
+  <hr class="my-4">
+  <p>It took 12 weeks to analyse, design, implement and test the project. After all these phases, we had a well-built and dynamic web application.</p>
+  <hr class="my-4">
+  <p>The advantages of Ruby on Rails was mainly used in this project.</p>
+  <hr class="my-4">
+  <p>Especially, MVC model was the main idea while creating the backend of the project. Besides, Postgresql was used to manage databases.</p>
+  <hr class="my-4">
+  <p>Bootstrap, HTML5 and CSS3 were the main frameworks while creating frontend of the project.</p>
+  <hr class="my-4">
+  <p>The developers are Computer Engineering students at ITU.</p>
+
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#hiddenpage" role="button" data-toggle="collapse">Learn more about developer team</a>
+  </p>
+  
+</div>
+    
+</div>
+
+<div class="container">
+  <div id="hiddenpage" class="collapse">
+  
+  <!-- Left-aligned media object -->
+  <div class="media">
+    <div class="media-left">
+      <%=image_tag("johndoe.png", :class =>"media-object", :style => "width:60px") %>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">Lütfi Demirci</h4>
+      <p>He has experience with Ruby on Rails. The GuruPomodoro project was his idea and helped other team members to learn Ruby on Rails.  </p><h4><b> Responsibilities: </b> Database Design / Full Stack Developer / Test Developer</h4>
+    </div>
+  </div>
+  <hr>
+  
+  <!-- Right-aligned media object -->
+  <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">Buse Dilan Uslan</h4>
+      <p>She has experience with HTML5, CSS3 and a little bit JavaScript. She mostly worked as a designer and test developer. </p><h4><b> Responsibilities: </b> Designer / Test Developer / Documentation</h4>
+    </div>
+    <div class="media-right">
+    <%=image_tag("janedoe.png", :class =>"media-object", :style => "width:60px") %>
+    </div>
+  </div>
+<hr>
+
+<div class="media">
+    <div class="media-left">
+      <%=image_tag("johndoe.png", :class =>"media-object", :style => "width:60px") %>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">Umutcan Karakaş</h4>
+      <p>He has experience with database management and also HTML5 and CSS3. He worked on buttons on the pages and made unit testing. </p><h4><b> Responsibilities: </b> Database Design / Test Developer / Full Stack Developer</h4>
+    </div>
+  </div>
+  <hr>
+
+  <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">Merve Gonca Dönmez</h4>
+     <p>She has experience with Photoshop. She mostly worked as a designer and created our logos. She also did the documentations. </p><h4><b> Responsibilities: </b> Designer / Documentation / Full Stack Developer</h4>
+    </div>
+    <div class="media-right">
+    <%=image_tag("janedoe.png", :class =>"media-object", :style => "width:60px") %>
+    </div>
+  </div>
+<hr>
+
+<div class="media">
+    <div class="media-left">
+      <%=image_tag("johndoe.png", :class =>"media-object", :style => "width:60px") %>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">Mustafa Çoban</h4>
+     <p>He has experience with databases and application development. He mostly worked on frontend backend connections. </p><h4><b> Responsibilities: </b> Database Design / Documentation / Full Stack Developer</h4>
+    </div>
+  </div>
+  <br>
+  <br>
 
   </div>
+  </div>
+
+  </body>
+  </html>
