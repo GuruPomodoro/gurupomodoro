@@ -5,6 +5,8 @@ class TeamInvitation < ApplicationRecord
   validates :to_name, presence: true
   validates :to_email, presence: true
 
+  validates :team, presence: true
+
   def is_accepted?
     accepted_at.present?
   end

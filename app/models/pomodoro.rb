@@ -8,4 +8,11 @@ class Pomodoro < ApplicationRecord
 
   scope :without_break,      -> () { where.not(is_break: false) }
   scope :only_breaks,        -> () { unscoped.where.not(trello_id: trello_ids) }
+
+  validates :user, presence: true
+  validates :team, presence: true
+  validates :started_at, presence: true
+  validates :finished_at, presence: true
+  validates :duration, presence: true
+
 end
