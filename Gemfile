@@ -19,7 +19,6 @@ gem 'bootstrap-sass', '3.3.7'
 
 gem 'jquery-rails'
 
-gem 'cancancan', '~> 2.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -54,7 +53,8 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'test-unit-rails'
   # gem 'rails-controller-testing'
-  gem 'rails-controller-testing'
+  # gem 'rails-controller-testing'
+  gem 'test-unit-rails'
 end
 
 group :development do
@@ -71,3 +71,12 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+group :development, :test do
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'rspec-rails'
+end
+group :test do
+  gem 'database_cleaner'
+  gem 'launchy'
+end
