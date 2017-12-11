@@ -1,4 +1,4 @@
-<% unless current_user.present? %>
+<% unless current_user.present? && !current_user.persisted?  %>
   <% provide(:title, "HomePage") %>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
@@ -16,7 +16,8 @@
     	font-size : 18px;
     	color: #FFF;
     	padding: 12px 22px;
-    	background: #5E4485;
+      background: #026aa7;
+    	color: #FFFFFF;
     	border: 2px solid #fff;
     }
     .container{
@@ -79,10 +80,10 @@
   		<div class= "carousel-inner" role= "listbox">
   			<div class = "item active">
   				<%=image_tag("homepage.png") %>
-  				<div class = "carousel-caption">
-  					<h1>Welcome <br>to <br>GuruPomodoro</h1>
-  					<br>
-            <li class="btn btn-info" role="button"><%= link_to('login with trello', user_trello_omniauth_authorize_path, class: 'trello') %></li>
+  				<div class = "carousel-caption" style="width: 330px; left: 10%;">
+  					<h1>Welcome to GuruPomodoro</h1>
+            <p>Time management system for teams.</p>
+  					<br><%= link_to('login with trello', user_trello_omniauth_authorize_path, class: 'btn btn-info trello') %>
   				</div>
   			</div><!--- End  Active -->
 
