@@ -1,5 +1,3 @@
-include Devise::Test::ControllerHelpers
-
 module TeamsHelper
   def team_user_box_class(user, state = nil)
     return 'onPomodoro' if user.current_pomodoro_without_break.present?
