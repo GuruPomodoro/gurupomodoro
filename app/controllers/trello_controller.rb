@@ -3,6 +3,7 @@ require 'trello'
 class TrelloController < ApplicationController
 
   def get_boards
+    authorize! :edit, current_team
     trello = Trello::Client.new(
       :consumer_key => "6bc8539de4ebe334b2eaf94b52e4159b",
       :consumer_secret => "35a9320829e1b50a2c9681786e3fb7b9629a5dc95523fefc04dd4c722fff8d4e",
@@ -17,6 +18,7 @@ class TrelloController < ApplicationController
   end
 
   def get_lists
+    authorize! :edit, current_team
     trello = Trello::Client.new(
       :consumer_key => "6bc8539de4ebe334b2eaf94b52e4159b",
       :consumer_secret => "35a9320829e1b50a2c9681786e3fb7b9629a5dc95523fefc04dd4c722fff8d4e",
@@ -41,6 +43,7 @@ class TrelloController < ApplicationController
   end
 
   def get_tasks
+    authorize! :edit, current_team
     @list = TrelloList.find(params[:list_id])
     trello = Trello::Client.new(
       :consumer_key => "6bc8539de4ebe334b2eaf94b52e4159b",

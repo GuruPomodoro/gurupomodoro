@@ -3,6 +3,7 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
+    authorize! :show, @team
     if session[:team_id].present? && session[:team_id] != @team.id
       TeamChannel.broadcast_to(
         current_team,
@@ -22,6 +23,7 @@ class TeamsController < ApplicationController
 
   # GET /teams/1/edit
   def edit
+    authorize! :edit, @team
   end
 
   # POST /teams
@@ -47,6 +49,7 @@ class TeamsController < ApplicationController
   # PATCH/PUT /teams/1
   # PATCH/PUT /teams/1.json
   def update
+    authorize! :edit, @team
     respond_to do |format|
       if @team.update(team_params)
         format.html { redirect_to root_path, notice: 'Team was successfully updated.' }
@@ -59,6 +62,7 @@ class TeamsController < ApplicationController
   end
 
   def settings
+    authorize! :edit, @team
     @trello_boards = current_user.trello_boards
     if @team.trello_board_id.present?
       selected_trello_board = @trello_boards.select { |board| board['id'] == @team.trello_board_id }
@@ -69,6 +73,7 @@ class TeamsController < ApplicationController
   end
 
   def set_trello_board
+    authorize! :edit, @team
     @team.trello_board_id = params[:trello_board_id]
     @team.save
     redirect_to settings_team_path(@team)
