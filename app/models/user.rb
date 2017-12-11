@@ -35,5 +35,16 @@ class User < ApplicationRecord
 
  def leader_of(team)
    team.leaders.include?(self)
+
+
+  validates_associated :team_users
+  validates_associated :team_leaders
+  validates_associated :teams
+  validates_associated :owned_teams
+  validates_associated :pomodoros
+  validates :email, presence: true
+  validates :encrypted_password, presence: true
+  validates :full_name, presence: true
+  validates :trello_token, presence: true
  end
 end

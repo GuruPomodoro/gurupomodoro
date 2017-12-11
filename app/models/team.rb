@@ -7,4 +7,10 @@ class Team < ApplicationRecord
   has_many :team_invitations
   has_many :trello_lists
   has_many :trello_tasks
+
+  validates_associated :team_users
+  validates_associated :pomodoros
+  validates_associated :team_leaders
+  validates_associated :members
+  validates_associated :leaders
 end
