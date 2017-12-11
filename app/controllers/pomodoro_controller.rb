@@ -15,6 +15,7 @@ class PomodoroController < ApplicationController
     pomodoro.user = current_user
     pomodoro.started_at = DateTime.now()
     pomodoro.finished_at = DateTime.now() + 25.minutes
+    pomodoro.duration = 25.minutes
     pomodoro.team = current_team
     pomodoro.is_break = false
     pomodoro.trello_task_id = params[:trello_task_id].presence
@@ -38,7 +39,8 @@ class PomodoroController < ApplicationController
     pomodoro = Pomodoro.new
     pomodoro.user = current_user
     pomodoro.started_at = DateTime.now()
-    pomodoro.finished_at = DateTime.now() + params[:duration].to_2i.minutes
+    pomodoro.finished_at = DateTime.now() + params[:duration].to_i.minutes
+    pomodoro.duration = params[:duration].to_i.minutes
     pomodoro.team = current_team
     pomodoro.is_break = true
     pomodoro.save
