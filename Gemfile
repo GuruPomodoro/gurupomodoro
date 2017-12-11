@@ -52,6 +52,8 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'test-unit-rails'
+  # gem 'rails-controller-testing'
+  gem 'rails-controller-testing'
 end
 
 group :development do

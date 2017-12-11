@@ -11,6 +11,10 @@ class User < ApplicationRecord
   has_many :owned_teams, class_name: 'Team', through: :team_leaders, source: :team
   has_many :pomodoros
 
+  validates :email, presence: true
+  validates :encrypted_password, presence: true
+  validates :full_name, presence: true
+
  def self.from_trello(auth)
   user = User.where(email: auth.info.email).first_or_initialize
   user.provider = auth.provider
@@ -35,16 +39,5 @@ class User < ApplicationRecord
 
  def leader_of(team)
    team.leaders.include?(self)
-
-
-  validates_associated :team_users
-  validates_associated :team_leaders
-  validates_associated :teams
-  validates_associated :owned_teams
-  validates_associated :pomodoros
-  validates :email, presence: true
-  validates :encrypted_password, presence: true
-  validates :full_name, presence: true
-  validates :trello_token, presence: true
  end
 end
