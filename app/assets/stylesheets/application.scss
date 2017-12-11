@@ -162,10 +162,15 @@ textarea {
 }
 
 #team-pomodoro-dashboard {
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-template-rows: repeat(2, 150px);
+
+    padding-bottom: 50px;
+
+    .team-user-box-outer {
+        width: 300px;
+        height: 160px;
+        float: left;
+        margin: 5px;
+    }
 
     .onPomodoro {
         background-color: #ff0e10;

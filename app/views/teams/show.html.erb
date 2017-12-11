@@ -10,10 +10,11 @@
   <div></div>
   <div id="team-pomodoro-dashboard">
     <% @team.members.each do |member| %>
-      <div id="team-user-box-outer-<%= member.id %>">
+      <div class="team-user-box-outer" id="team-user-box-outer-<%= member.id %>">
         <%= render 'teams/user_pomodoro_box', user: member, state: 'init' %>
       </div>
     <% end %>
+    <div class="clearfix"></div>
   </div>
 </div>
 
