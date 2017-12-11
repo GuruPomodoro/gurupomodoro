@@ -8,6 +8,9 @@
     	top: 50%;
     	transform: translateY(-50%);
     	text-transform: uppercase;
+      text-align: left;
+      left: 15%;
+
     }
     .btn{
     	font-size : 18px;
@@ -75,16 +78,16 @@
   		</ol>
   		<div class= "carousel-inner" role= "listbox">
   			<div class = "item active">
-  				<%=image_tag("pomodoro.jpg") %>
+  				<%=image_tag("homepage.jpeg") %>
   				<div class = "carousel-caption">
-  					<h1>Welcome to GuruPomodoro</h1>
+  					<h1>Welcome <br>to <br>GuruPomodoro</h1>
   					<br>
-  					<a href="users/sign_up" class="btn btn-info" role="button">Sign-Up Now</a>
+            <li class="btn btn-info" role="button"><%= link_to('login with trello', user_trello_omniauth_authorize_path, class: 'trello') %></li>
   				</div>
   			</div><!--- End  Active -->
 
   			<div class = "item">
-  				<%=image_tag("team.jpeg") %>
+  				<%=image_tag("pomodoro.jpg") %>
   			</div>
   			<div class = "item">
   				<%=image_tag("itu.jpg") %>
