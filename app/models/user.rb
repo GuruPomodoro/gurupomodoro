@@ -26,7 +26,7 @@ class User < ApplicationRecord
  end
 
  def current_pomodoro
-   Pomodoro.where(user: self).where("started_at <= ? AND finished_at >= ?", DateTime.now, DateTime.now).first
+   Pomodoro.unscoped.where(user: self).where("started_at <= ? AND finished_at >= ?", DateTime.now, DateTime.now).first
  end
 
  def current_pomodoro_without_break

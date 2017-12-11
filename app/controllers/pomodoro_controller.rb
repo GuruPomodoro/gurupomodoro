@@ -11,7 +11,8 @@ class PomodoroController < ApplicationController
 
   def begin
     redirect_to pomodoro_during_path if current_user.current_pomodoro.present?
-    pomodoro = current_user.pomodoros.new
+    pomodoro = Pomodoro.new
+    pomodoro.user = current_user
     pomodoro.started_at = DateTime.now()
     pomodoro.finished_at = DateTime.now() + 25.minutes
     pomodoro.team = current_team
@@ -34,9 +35,10 @@ class PomodoroController < ApplicationController
 
   def break_start
     redirect_to pomodoro_during_path if current_user.current_pomodoro.present?
-    pomodoro = current_user.pomodoros.new
+    pomodoro = Pomodoro.new
+    pomodoro.user = current_user
     pomodoro.started_at = DateTime.now()
-    pomodoro.finished_at = DateTime.now() + params[:duration].to_i.minutes
+    pomodoro.finished_at = DateTime.now() + params[:duration].to_2i.minutes
     pomodoro.team = current_team
     pomodoro.is_break = true
     pomodoro.save
