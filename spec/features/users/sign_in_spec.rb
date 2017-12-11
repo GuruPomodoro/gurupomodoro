@@ -1,8 +1,7 @@
-
 feature 'Sign in', :devise do
 
-  scenario 'user cannot sign in if not registered' do
-    signin('test@example.com', 'please123')
+  scenario 'user cannot login witout registration' do
+    signin('asdasd@asdasd.com', 'asdasdasd')
     expect(page).to have_content I18n.t 'devise.failure.not_found_in_database', authentication_keys: 'Email'
   end
 
@@ -15,7 +14,7 @@ feature 'Sign in', :devise do
 
   scenario 'user cannot sign in with wrong email' do
     user = FactoryBot.create(:user)
-    signin('invalid@email.com', user.password)
+    signin('asdasd@asdasd.com', 'asdasdasd')
     expect(page).to have_content I18n.t 'devise.failure.not_found_in_database', authentication_keys: 'Email'
   end
 

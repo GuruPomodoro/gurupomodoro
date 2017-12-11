@@ -23,7 +23,7 @@
               <% end %>
               <% @team.team_invitations.each do |invitation| %>
                 <li class="list-group-item">
-                  <span><%= invitation.to_name %> (<%= invitation.to_email %> )</span>
+                  <span><%= invitation.to_name %> (<%= invitation.to_email %>)</span>
                   <%= link_to 'x',  invitation,  method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default float-right btn-xs' %>
                   <span class="label label-default float-right uppercase">invited</span>
                   <div class="clearfix"></div>
